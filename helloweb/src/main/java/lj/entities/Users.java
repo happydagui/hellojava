@@ -10,7 +10,7 @@ import java.util.UUID;
  * Created by min on 17-1-7.
  */
 @Entity
-@Table(name = "t_users")
+@Table(name = "helloweb_users")
 public class Users {
     @Id
     @Column(name = "id", unique = false, nullable = false, length = 36)

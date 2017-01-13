@@ -12,7 +12,7 @@
     <title>hello jsp</title>
 </head>
 <body>
-<h1>Hello Springmvc With jstl view</h1>
+<h1>Hello Springmvc With jstl view!</h1>
 <ul>
 <c:forEach var="user" items="${users}">
     <li>${user.name}</li>
