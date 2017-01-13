@@ -107,8 +107,21 @@ Run/Edit Configuration ...
 - web.xml配置中的url-pattern的'/'和'/*'的区别吗？
   哎，基本功不扎实，这个问题折腾了好久。'/'表示该项目的所有请求路径；'/*'表示只能有一级子路径，它匹配'/a.jsp'但是不匹配'/jsp/a.jsp'。
 
+- org.hibernate.HibernateException: save is not valid without active transaction
+
+add 
+<tx:annotation-driven transaction-manager="transactionManager"/>
+remove
+<beans:prop key="hibernate.current_session_context_class">thread</beans:prop>
+
+- 在 service 层，也即是业务层声明事务，而不是 dao 层，控制器层业务逻辑只读的数据库访问可以调用 dao 层，调用事务性的数据库访问
+ getCurrentSession() 会发送错误
+
 ## 参考
 - [Maven Repository: Search/Browse/Explore](http://mvnrepository.com/)
 - (http://www.mamicode.com/info-detail-467301.html)
 - druid：一款高效的数据库连接池
 - Hibernate4的改动较大只有spring3.1以上版本能够支持，Spring3.1取消了HibernateTemplate，因为Hibernate4的事务管理已经很好了，不用Spring再扩展了
+
+
+-  Intellij IDEA 14中使用MyBatis-generator 自动生成MyBatis代码 

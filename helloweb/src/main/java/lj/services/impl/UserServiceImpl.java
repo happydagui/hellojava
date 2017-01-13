@@ -5,6 +5,8 @@ import lj.entities.Users;
 import lj.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,6 +15,7 @@ import java.util.List;
  * Created by min on 17-1-7.
  */
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -34,6 +37,8 @@ public class UserServiceImpl implements UserService {
      * ③关闭Session
      */
 
+    // @Transactional(propagation = Propagation.NOT_SUPPORTED)
+    // org.hibernate.HibernateException: Javassist Enhancement failed: lj.entities.Users
     public Users load(String id) {
         return userDao.load(id);
     }
@@ -42,6 +47,7 @@ public class UserServiceImpl implements UserService {
         return userDao.save(user);
     }
 
+    @Transactional(propagation = Propagation.NOT_SUPPORTED)
     public List<Users> list() {
         return userDao.list();
     }

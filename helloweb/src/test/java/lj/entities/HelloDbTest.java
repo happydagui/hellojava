@@ -8,6 +8,7 @@ import org.hibernate.Transaction;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
@@ -29,6 +30,7 @@ public class HelloDbTest extends AbstractTransactionalJUnit4SpringContextTests {
     private UserService userService;   // Resouce 默认按照名称注入
 
     @Test
+    @Rollback(true)
     public void test() {
         String id = UUID.randomUUID().toString();
         Users user = new Users("foo", "bar");

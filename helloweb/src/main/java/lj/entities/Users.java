@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.UUID;
 
 /**
  * Created by min on 17-1-7.
@@ -17,8 +18,11 @@ public class Users {
     private String name;
     private String password;
 
+    public Users() {}
+
     public Users(String name, String password) {
         super();
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.password = password;
     }
