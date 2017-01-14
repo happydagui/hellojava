@@ -2,7 +2,7 @@
 
 use `git clone https://happydagui.github.com` to clone the repository.
 
-** Preaquion **
+** Prerequisites **
 
 - Develpment enviroment is as below:
 - Ubuntu 16.04
