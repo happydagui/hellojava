@@ -63,3 +63,4 @@ use project's artifact tab panel to auto-deploy maven dependencies to /WEB-INF/l
 
 
 ## Integration with MyBatis for database operations
+see [MyBatis](hellomybatis/README.md)
