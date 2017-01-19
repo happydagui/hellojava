@@ -1,3 +1,6 @@
+/**
+ * 了解 构造器、类初始化、实例初始化的执行顺序
+ */
 public class Foo {
 	public Foo() {
 		System.out.println("constructor");

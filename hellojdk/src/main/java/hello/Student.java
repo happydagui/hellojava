@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Created by min on 17-1-11.
+ * 关于序列化的内容
  */
 public class Student implements Serializable {
     String name;
