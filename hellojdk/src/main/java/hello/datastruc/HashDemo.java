@@ -1,5 +1,8 @@
 package hello.datastruc;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Map;
@@ -13,13 +16,15 @@ import java.util.Map;
  * Created by min on 17-1-16.
  */
 public class HashDemo {
+    static final Logger logger = LoggerFactory.getLogger(HashDemo.class);
 
     public static void main(String[] args) {
-//        testHashMap();
-        testHashTable();
+        testHashMap();
+//        testHashTable();
     }
 
     public static void testHashMap() {
+        logger.info("Calling ({})", "testHashMap");
         Map map = new HashMap();
         Person p1 = new Person("min",20);
         Person p2 = new Person("yaping", 20);
