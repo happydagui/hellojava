@@ -11,7 +11,7 @@ import java.util.List;
  * 产生 java_pid<pid>.hprof ，可以使用 [MAT 工具]进行分析
  * (ignoring option PermSize=5m; support was removed in 8.0)
  */
-public class TestOOM3 {
+public class RuntimeConstantPoolOOM {
     public static void main(String[] args) {
         List ls = new ArrayList();
         int i = 0;
@@ -29,7 +29,7 @@ Heap dump file created [25161408 bytes in 0.387 secs]
 Exception in thread "main" java.lang.OutOfMemoryError: GC overhead limit exceeded
 	at java.lang.Integer.toString(Integer.java:401)
 	at java.lang.String.valueOf(String.java:3099)
-	at hello.hotspot.TestOOM3.main(TestOOM3.java:18)
+	at hello.hotspot.RuntimeConstantPoolOOM.main(RuntimeConstantPoolOOM.java:18)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
