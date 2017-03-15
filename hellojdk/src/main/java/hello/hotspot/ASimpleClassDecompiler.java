@@ -11,7 +11,32 @@ import java.util.Arrays;
 public class ASimpleClassDecompiler {
 
     public static void main(String[] args) {
-        test2();
+        test1();
+    }
+
+
+    /**
+     * ObjectOutputStream　写入文件的时候，会带一个头部，所以不能直接使用 \
+     * ObjectOutputStream　来读 .class　文件
+     * 所以可以使用 DataInputStream
+     */
+    public static void test1() {
+        String filename = "ASimpleClass.class";
+        try {
+            DataInputStream o = new DataInputStream(new BufferedInputStream(new FileInputStream(filename)));
+            int magic = o.readInt();
+            // java.io.StreamCorruptedException: invalid stream header: CAFEBABE
+
+            int minor_version = o.readShort();
+            int major_version = o.readShort();
+
+            System.out.println(String.format("magic: %s, minor_version: %d, majoir_version: %d", Integer.toHexString(magic), minor_version, major_version));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+
+        }
     }
 
     public static void test2() {
@@ -59,25 +84,4 @@ public class ASimpleClassDecompiler {
     }
 
 
-    /**
-     * @deprecated ObjectOutputStream　写入文件的时候，会带一个头部，所以不能直接使用 \
-     * ObjectOutputStream　来读 .class　文件
-     */
-    public static void test1() {
-        String filename = "ASimpleClass.class";
-        try {
-            ObjectInputStream o = new ObjectInputStream(new BufferedInputStream(new FileInputStream(filename)));
-            int magic = o.readInt();
-            // java.io.StreamCorruptedException: invalid stream header: CAFEBABE
-
-            int minor_version = o.readShort();
-            int major_version = o.readShort();
-            System.out.println(String.format("magic: %d, minor_version: %d, majoir_version: %d", magic, minor_version, major_version));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-
-        }
-    }
 }

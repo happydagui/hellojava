@@ -1,8 +1,5 @@
 package hello.hotspot;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * 测试栈溢出：java.lang.StackOverflowError
  * Created by min on 17-2-5.
@@ -11,16 +8,16 @@ import java.util.List;
  * 产生 java_pid<pid>.hprof ，可以使用 [MAT 工具]进行分析
  * (The stack size specified is too small, Specify at least 228k)
  */
-public class TestOOM2 {
-    static int stackIndex = 0;
+public class JavaVMStackSOF {
+    private int stackLength = 0;
 
-    public void testStackOverFlow() {
-        stackIndex++;
-        testStackOverFlow();
+    public void stackLeak() {
+        stackLength++;
+        stackLeak();
     }
 
-    public void testStackOverFlow2() {
-        stackIndex++;
+    public void stackLeak2() {
+        stackLength++;
         int str = 12;
         int str2 = 12;
         int str3 = 12;
@@ -30,16 +27,16 @@ public class TestOOM2 {
         int str7 = 12;
         int str8 = 12;
         int str9 = 12;
-        testStackOverFlow2();
+        stackLeak2();
     }
 
     public static void main(String[] args) throws Throwable {
+        JavaVMStackSOF oom = new JavaVMStackSOF();
         try {
-            TestOOM2 oom = new TestOOM2();
-//            oom.testStackOverFlow(); // 3794
-            oom.testStackOverFlow2(); // 2179: 明显小于3794，说明局部变量也占据了栈空间
+//            oom.stackLeak(); // 3794
+            oom.stackLeak2(); // 2179: 明显小于3794，说明局部变量也占据了栈空间
         } catch (Throwable e) {
-            System.out.println("Biggest statck deepth: " + stackIndex);
+            System.out.println("Stack length: " + oom.stackLength);
             throw e;
         }
     }
